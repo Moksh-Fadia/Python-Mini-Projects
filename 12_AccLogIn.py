@@ -25,16 +25,19 @@ def signIn():
 
 
 def register():
-    usr = input("Create username: ")
+    while True:
+        usr = input("Create username: ")
 
-    with open("saved.txt", "r") as f:
-        accounts = f.readlines()
+        with open("saved.txt", "r") as f:
+            accounts = f.readlines()
 
-    for account in accounts:
-        saved_usr, saved_pwd = account.strip().split(",")        
-        if saved_usr == usr:
-            print("Username already exists! Try another username.")
-            return    
+        for account in accounts:
+            saved_usr, saved_pwd = account.strip().split(",")        
+            if saved_usr == usr:
+                print("Username already exists! Try another username.")
+                break  
+        else:
+            break
 
     while True:
         pwd = input("Create password: ")
